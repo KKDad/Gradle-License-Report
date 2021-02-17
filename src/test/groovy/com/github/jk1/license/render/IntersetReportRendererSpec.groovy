@@ -92,7 +92,10 @@ class IntersetReportRendererSpec extends Specification {
         then:
         outputCsv.exists()
         outputCsv.text == """moduleLicense,group,module,version,licenseUrl,
+Apache 2.0,dummy-group,mod1,0.0.1,,
 Apache License Version 2.0,dummy-group,mod1,0.0.1,https://www.apache.org/licenses/LICENSE-2.0,
+Apache 2.0,dummy-group,mod2,0.0.1,,
+Apache License Version 2.0,dummy-group,mod2,0.0.1,https://www.apache.org/licenses/LICENSE-2.0,
 MIT License,dummy-group,mod2,0.0.1,https://opensource.org/licenses/MIT,
 """
     }

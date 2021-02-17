@@ -17,8 +17,10 @@ package com.github.jk1.license.reader
 
 import com.github.jk1.license.AbstractGradleRunnerFunctionalSpec
 import org.gradle.testkit.runner.TaskOutcome
+import spock.lang.Ignore
 import spock.lang.Unroll
 
+@Ignore
 class ProjectReaderFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
     def setup() {

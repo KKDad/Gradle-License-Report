@@ -88,7 +88,7 @@ class MultiProjectReportCachingSpec extends Specification {
         when:
         buildFile.text = """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
         """
 

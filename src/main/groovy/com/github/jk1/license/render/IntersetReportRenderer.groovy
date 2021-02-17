@@ -57,17 +57,25 @@ class IntersetReportRenderer implements ReportRenderer {
     }
 
     void renderDependency(File output, ModuleData data) {
-        def (String moduleUrl, String moduleLicense, String moduleLicenseUrl) = LicenseDataCollector.singleModuleLicenseInfo().singleModuleLicenseInfo(data)
 
-        if (moduleLicense != null) {
-            moduleLicense = moduleLicense.replace(',', " ")
-            moduleLicense = moduleLicense.replace('  ', " ")
-            moduleLicense = moduleLicense.replace(' + ', "+")
-        } else {
-            moduleLicense = ''
-        }
+        LicenseDataCollector.MultiLicenseInfo multiLicenseInfo = LicenseDataCollector.multiModuleLicenseInfo(data)
 
-        output << "${moduleLicense}${separator}${data.group}${separator}${data.name}${separator}${data.version}${separator}${moduleLicenseUrl}${separator}$nl"
+        //def moduleUrl = lastOrNull(multiLicenseInfo.moduleUrls)
+        multiLicenseInfo.licenses.forEach( {
+            def moduleLicense = it.name
+            def moduleLicenseUrl = it.url == null ? '' : it.url
+
+            if (moduleLicense != null) {
+                moduleLicense = moduleLicense.replace(',', " ")
+                moduleLicense = moduleLicense.replace('  ', " ")
+                moduleLicense = moduleLicense.replace(' + ', "+")
+            } else {
+                moduleLicense = ''
+            }
+
+            output << "${moduleLicense}${separator}${data.group}${separator}${data.name}${separator}${data.version}${separator}${moduleLicenseUrl}${separator}$nl"
+
+        })
     }
-
 }
+

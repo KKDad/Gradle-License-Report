@@ -16,6 +16,7 @@
 package com.github.jk1.license.reader
 
 import com.github.jk1.license.AbstractGradleRunnerFunctionalSpec
+import groovy.json.JsonSlurper
 import org.gradle.testkit.runner.TaskOutcome
 
 class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
@@ -48,7 +49,9 @@ class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         then:
         runResult.task(":generateLicenseReport").outcome == TaskOutcome.SUCCESS
-        configurationsString == javaxActivationOutput
+        def configurationJson = new JsonSlurper().parseText(configurationsString)
+        def outputJson = new JsonSlurper().parseText(javaxActivationOutput)
+        assert configurationJson == outputJson
     }
 
     def "report task respects group excludes"() {
@@ -61,8 +64,9 @@ class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         then:
         runResult.task(":generateLicenseReport").outcome == TaskOutcome.SUCCESS
-        configurationsString == javaxActivationOutput
-    }
+        def configurationJson = new JsonSlurper().parseText(configurationsString)
+        def outputJson = new JsonSlurper().parseText(javaxActivationOutput)
+        assert configurationJson == outputJson    }
 
     def "module excludes support regular expressions"() {
         setup:
@@ -74,8 +78,9 @@ class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         then:
         runResult.task(":generateLicenseReport").outcome == TaskOutcome.SUCCESS
-        configurationsString == javaxActivationOutput
-    }
+        def configurationJson = new JsonSlurper().parseText(configurationsString)
+        def outputJson = new JsonSlurper().parseText(javaxActivationOutput)
+        assert configurationJson == outputJson    }
 
     def "group excludes support regular expressions"() {
         setup:
@@ -87,8 +92,9 @@ class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         then:
         runResult.task(":generateLicenseReport").outcome == TaskOutcome.SUCCESS
-        configurationsString == javaxActivationOutput
-    }
+        def configurationJson = new JsonSlurper().parseText(configurationsString)
+        def outputJson = new JsonSlurper().parseText(javaxActivationOutput)
+        assert configurationJson == outputJson    }
 
 
     private def generateBuildWith(String exclude) {

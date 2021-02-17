@@ -16,6 +16,7 @@
 package com.github.jk1.license.reader
 
 import com.github.jk1.license.AbstractGradleRunnerFunctionalSpec
+import groovy.json.JsonSlurper
 import org.gradle.testkit.runner.TaskOutcome
 
 import static com.github.jk1.license.reader.ProjectReaderFuncSpec.removeDevelopers
@@ -73,7 +74,8 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
         then:
         runResult.task(":generateLicenseReport").outcome == TaskOutcome.SUCCESS
 
-        configurationsString == """[
+        def configurationJson = new JsonSlurper().parseText(configurationsString)
+        def outputJson = new JsonSlurper().parseText("""[
     {
         "dependencies": [
             {
@@ -167,7 +169,8 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
         ],
         "name": "mainConfig"
     }
-]"""
+]""")
+        assert configurationJson == outputJson
     }
 
     def "different configurations are kept"() {
@@ -316,7 +319,7 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
         setup:
         buildFile.text = """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -424,7 +427,7 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
         setup:
         buildFile.text = """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
             import com.github.jk1.license.render.*
@@ -457,7 +460,8 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
         then:
         runResult.task(":generateLicenseReport").outcome == TaskOutcome.SUCCESS
 
-        configurationsString == """[
+        def configurationJson = new JsonSlurper().parseText(configurationsString)
+        def outputJson = new JsonSlurper().parseText("""[
     {
         "dependencies": [
             {
@@ -499,7 +503,8 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
         ],
         "name": "subConfig"
     }
-]"""
+]""")
+        assert configurationJson == outputJson
     }
 
     def "only defined configurations (and their extended forms) are considered"() {
@@ -518,7 +523,7 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
 
         buildFile.text = """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -527,7 +532,7 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
                 mavenCentral()
             }
 
-            import com.github.jk1.license.render.*
+            import com.github.kkdad.license.render.*
             licenseReport {
                 outputDir = "${fixPathForBuildFile(outputDir.absolutePath)}"
                 renderer = new com.github.jk1.license.render.RawProjectDataJsonRenderer()

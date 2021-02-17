@@ -104,7 +104,7 @@ class CheckLicenseTaskSpec extends Specification {
 
             plugins {
                 id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-                id 'com.github.kkdad.dependency-license-report' version '1.2'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
             apply plugin: 'java'
@@ -285,9 +285,8 @@ class CheckLicenseTaskSpec extends Specification {
 
             plugins {
                 id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-                id 'com.github.kkdad.dependency-license-report' version '1.2'
+                id 'com.github.kkdad.dependency-license-report'
             }
-
 
             group 'greeting'
             version '0.0.1'
@@ -364,7 +363,7 @@ class CheckLicenseTaskSpec extends Specification {
 
             plugins {
                 id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-                id 'com.github.jk1.dependency-license-report' version '1.2'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
 
@@ -422,7 +421,7 @@ class CheckLicenseTaskSpec extends Specification {
 
             plugins {
                 id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-                id 'com.github.kkdad.dependency-license-report' version '1.2'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
             group 'greeting'
@@ -497,7 +496,7 @@ class CheckLicenseTaskSpec extends Specification {
 
             plugins {
                 id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-                id 'com.github.jk1.dependency-license-report' version '1.2'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
             group 'greeting'
@@ -555,7 +554,7 @@ class CheckLicenseTaskSpec extends Specification {
 
             plugins {
                 id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-                id 'com.github.kkdad.dependency-license-report' version '1.2'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
             apply plugin: 'java'
@@ -618,7 +617,7 @@ class CheckLicenseTaskSpec extends Specification {
 
             plugins {
                 id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-                id 'com.github.kkdad.dependency-license-report' version '1.2'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
             apply plugin: 'java'
