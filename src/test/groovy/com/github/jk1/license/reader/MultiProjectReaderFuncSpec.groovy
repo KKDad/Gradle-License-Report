@@ -27,7 +27,7 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
 
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -159,7 +159,7 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
                     }
                 ],
                 "licenseFiles": [
-                    
+
                 ],
                 "empty": false,
                 "name": "annotations"
@@ -491,7 +491,7 @@ class MultiProjectReaderFuncSpec  extends AbstractGradleRunnerFunctionalSpec {
                     }
                 ],
                 "licenseFiles": [
-                    
+
                 ],
                 "empty": false,
                 "name": "annotations"

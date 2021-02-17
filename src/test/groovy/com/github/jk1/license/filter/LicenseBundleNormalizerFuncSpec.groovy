@@ -32,7 +32,7 @@ class LicenseBundleNormalizerFuncSpec extends AbstractGradleRunnerFunctionalSpec
 
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 forTesting
@@ -156,7 +156,7 @@ class LicenseBundleNormalizerFuncSpec extends AbstractGradleRunnerFunctionalSpec
         buildFile.setText("") // clear the file first
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 forTesting

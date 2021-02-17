@@ -23,7 +23,7 @@ import org.gradle.api.tasks.Input
 /**
  * Simple Interset license report renderer
  * <br/>
- * myLicense,my.super,module,1.0
+ * myLicense,my.super,module,1.0,licenseUrl
  *
  */
 class IntersetReportRenderer implements ReportRenderer {
@@ -32,7 +32,7 @@ class IntersetReportRenderer implements ReportRenderer {
     boolean includeHeaderLine = true
 
     String separator = ','
-    String nl = '\r\n'
+    String nl = '\n'
 
     IntersetReportRenderer(String filename = 'licenses.csv') {
         this.filename = filename
@@ -48,7 +48,7 @@ class IntersetReportRenderer implements ReportRenderer {
         output.write('')
 
         if (includeHeaderLine) {
-            output << "moduleLicense${separator}group${separator}module${separator}version${separator}$nl"
+            output << "moduleLicense${separator}group${separator}module${separator}version${separator}licenseUrl${separator}$nl"
         }
 
         data.allDependencies.sort().each {
@@ -57,7 +57,7 @@ class IntersetReportRenderer implements ReportRenderer {
     }
 
     void renderDependency(File output, ModuleData data) {
-        def (String moduleUrl, String moduleLicense, String moduleLicenseUrl) = LicenseDataCollector.singleModuleLicenseInfo(data)
+        def (String moduleUrl, String moduleLicense, String moduleLicenseUrl) = LicenseDataCollector.singleModuleLicenseInfo().singleModuleLicenseInfo(data)
 
         if (moduleLicense != null) {
             moduleLicense = moduleLicense.replace(',', " ")
@@ -67,7 +67,7 @@ class IntersetReportRenderer implements ReportRenderer {
             moduleLicense = ''
         }
 
-        output << "${moduleLicense}${separator}${data.group}${separator}${data.name}${separator}${data.version}${separator}$nl"
+        output << "${moduleLicense}${separator}${data.group}${separator}${data.name}${separator}${data.version}${separator}${moduleLicenseUrl}${separator}$nl"
     }
 
 }

@@ -43,14 +43,14 @@ class ReportTaskCachingSpec extends Specification {
     """
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
                 id 'java'
             }
-            
+
             repositories {
                 mavenCentral()
             }
-            
+
             dependencies {
                 compile "junit:junit:\${project.ext.junitVersion}"
             }
@@ -244,15 +244,15 @@ class ReportTaskCachingSpec extends Specification {
     private def addFilterToBuildFile(String string) {
         buildFile.text = """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
-            
+
             repositories {
                 mavenCentral()
             }
-            
+
             apply plugin: 'java'
-            
+
             import com.github.jk1.license.filter.*
             import com.github.jk1.license.ProjectData
             import org.gradle.api.tasks.Input
@@ -263,20 +263,20 @@ class ReportTaskCachingSpec extends Specification {
                 MyFilter(String string) {
                     this.input = string
                 }
-    
+
                 @Input
                 private String getInputCache() { return this.input }
-    
+
                 @Override
                 ProjectData filter(ProjectData source) {
                     return source
                 }
             }
-            
+
             dependencies {
                 compile "junit:junit:\${project.ext.junitVersion}"
             }
-            
+
             licenseReport {
                 filters = [new MyFilter("${string}")]
             }
@@ -286,15 +286,15 @@ class ReportTaskCachingSpec extends Specification {
     private addRendererToBuildFile(String string) {
         buildFile.text = """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
-            
+
             repositories {
                 mavenCentral()
             }
-            
+
             apply plugin: 'java'
-            
+
             import com.github.jk1.license.render.*
             import com.github.jk1.license.ProjectData
             import org.gradle.api.tasks.Input
@@ -305,19 +305,19 @@ class ReportTaskCachingSpec extends Specification {
                 MyRenderer(String string) {
                     this.input = string
                 }
-    
+
                 @Input
                 private String getInputCache() { return this.input }
-    
+
                 @Override
                 void render(ProjectData data) {
                 }
             }
-            
+
             dependencies {
                 compile "junit:junit:\${project.ext.junitVersion}"
             }
-            
+
             licenseReport {
                 renderers = [new MyRenderer("${string}")]
             }

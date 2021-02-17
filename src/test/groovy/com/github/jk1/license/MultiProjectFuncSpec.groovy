@@ -27,7 +27,7 @@ class MultiProjectFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         newSubBuildFile("sub1") << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -49,7 +49,7 @@ class MultiProjectFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         newSubBuildFile("sub2") << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -100,7 +100,7 @@ class MultiProjectFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -109,7 +109,7 @@ class MultiProjectFuncSpec extends AbstractGradleRunnerFunctionalSpec {
                 mavenCentral()
             }
 
-            import com.github.jk1.license.render.*
+            import com.github.kkdad.license.render.*
             licenseReport {
                 renderers = [new com.github.jk1.license.render.RawProjectDataJsonRenderer()]
                 filters = new com.github.jk1.license.filter.LicenseBundleNormalizer()
@@ -122,7 +122,7 @@ class MultiProjectFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         newSubBuildFile("sub1") << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -144,7 +144,7 @@ class MultiProjectFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         newSubBuildFile("sub2") << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 mainConfig
@@ -153,7 +153,7 @@ class MultiProjectFuncSpec extends AbstractGradleRunnerFunctionalSpec {
                 mavenCentral()
             }
 
-            import com.github.jk1.license.render.*
+            import com.github.kkdad.license.render.*
             licenseReport {
                 renderers = [new com.github.jk1.license.render.RawProjectDataJsonRenderer()]
                 filters = new com.github.jk1.license.filter.LicenseBundleNormalizer()

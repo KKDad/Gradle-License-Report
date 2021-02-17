@@ -24,7 +24,7 @@ class ProjectReaderFuncSpec extends AbstractGradleRunnerFunctionalSpec {
     def setup() {
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
             configurations {
                 forTesting
@@ -334,7 +334,7 @@ class ProjectReaderFuncSpec extends AbstractGradleRunnerFunctionalSpec {
                     }
                 ],
                 "licenseFiles": [
-                    
+
                 ],
                 "empty": false,
                 "name": "aopalliance"
@@ -529,7 +529,7 @@ class ProjectReaderFuncSpec extends AbstractGradleRunnerFunctionalSpec {
                     }
                 ],
                 "licenseFiles": [
-                    
+
                 ],
                 "empty": false,
                 "name": "slf4j-api"

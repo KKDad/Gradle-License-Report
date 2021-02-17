@@ -39,7 +39,7 @@ class MultiProjectReportCachingSpec extends Specification {
                 directory '${localBuildCacheDirectory.toURI()}'
             }
         }
-        
+
         include 'sub'
     """
     }
@@ -49,7 +49,7 @@ class MultiProjectReportCachingSpec extends Specification {
         when:
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
             }
 
             licenseReport {
@@ -69,7 +69,7 @@ class MultiProjectReportCachingSpec extends Specification {
             repositories {
                 mavenCentral()
             }
-            
+
             dependencies {
                 compile "javax.annotation:javax.annotation-api:1.3.2"
             }

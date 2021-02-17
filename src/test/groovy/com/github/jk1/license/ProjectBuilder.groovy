@@ -214,7 +214,7 @@ class ProjectBuilder extends BuilderSupport {
         pom.licenses << licenseToUse
         licenseToUse
     }
-    
+
     private String addManifestLicense(Object license) {
         ManifestData manifest = (ManifestData)current
         String licenseText

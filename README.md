@@ -15,7 +15,7 @@ Add this to your `build.gradle` file:
 
 ```groovy
 plugins {
-  id 'com.github.jk1.dependency-license-report' version '1.16'
+  id 'com.github.kkdad.dependency-license-report' version '1.16.3'
 }
 ```
 
@@ -31,10 +31,10 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.github.jk1:gradle-license-report:1.16'
+        classpath 'com.github.kkdad:gradle-license-report:1.16.3'
     }
 }
-apply plugin: 'com.github.jk1.dependency-license-report'
+apply plugin: 'com.github.kkdad.dependency-license-report'
 ```
 
 Then run `gradle generateLicenseReport` to generate your report in `build/reports/dependency-license`.
@@ -106,7 +106,7 @@ import com.github.jk1.license.filter.DependencyFilter
 import com.github.jk1.license.filter.LicenseBundleNormalizer
 
 plugins {
-    id("com.github.jk1.dependency-license-report") version "1.16"
+    id("com.github.kkdad.dependency-license-report") version "1.16.3"
 }
 
 licenseReport {

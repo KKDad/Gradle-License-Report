@@ -25,7 +25,7 @@ class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
 
         buildFile << """
             plugins {
-                id 'com.github.jk1.dependency-license-report'
+                id 'com.github.kkdad.dependency-license-report'
                 id 'java'
             }
             repositories {
@@ -106,7 +106,7 @@ class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
     private String javaxActivationOutput = """[
     {
         "dependencies": [
-            
+
         ],
         "name": "compile"
     },
@@ -130,7 +130,7 @@ class ExcludesFuncSpec extends AbstractGradleRunnerFunctionalSpec {
                 "poms": [
                     {
                         "developers": [
-                            
+
                         ],
                         "inceptionYear": "",
                         "projectUrl": "http://java.sun.com/javase/technologies/desktop/javabeans/jaf/index.jsp",

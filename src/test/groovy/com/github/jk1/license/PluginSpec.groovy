@@ -73,7 +73,7 @@ class PluginSpec extends Specification {
         Project project = org.gradle.testfixtures.ProjectBuilder.builder().build()
 
         when:
-        project.pluginManager.apply 'com.github.jk1.dependency-license-report'
+        project.pluginManager.apply 'com.github.kkdad.dependency-license-report'
 
         then:
         project.licenseReport

@@ -23,7 +23,7 @@ class ProjectDataFixture {
     static def GRADLE_PROJECT() {
         if (project == null) {
             project = ProjectBuilder.builder().withName("my-project").build()
-            project.pluginManager.apply 'com.github.jk1.dependency-license-report'
+            project.pluginManager.apply 'com.github.kkdad.dependency-license-report'
         }
         project
     }
