@@ -83,7 +83,7 @@ class IntersetReportRendererSpec extends Specification {
         }
     }
 
-    def "writes a one-license-per-module"() {
+    def "writes a one-license-per-module-by-default"() {
         def intersetReportRenderer = new IntersetReportRenderer()
 
         when:
@@ -99,5 +99,34 @@ Apache License Version 2.0,dummy-group,mod2,0.0.1,https://www.apache.org/license
 MIT License,dummy-group,mod2,0.0.1,https://opensource.org/licenses/MIT,
 """
     }
+
+    def "can-write a multiple-licenses-per-line-when-configured"() {
+        def intersetReportRenderer = new IntersetReportRenderer(oneLinePerLicense: false)
+
+        when:
+        intersetReportRenderer.render(projectData)
+
+        then:
+        outputCsv.exists()
+        outputCsv.text == """moduleLicense,group,module,version,licenseUrl,
+Apache 2.0;Apache License Version 2.0,dummy-group,mod1,0.0.1,https://www.apache.org/licenses/LICENSE-2.0,
+Apache 2.0;Apache License Version 2.0;MIT License,dummy-group,mod2,0.0.1,https://www.apache.org/licenses/LICENSE-2.0;https://opensource.org/licenses/MIT,
+"""
+    }
+
+    def "can-specify-multi-license-separator"() {
+        def intersetReportRenderer = new IntersetReportRenderer(oneLinePerLicense: false, multiLicenseSeparator: '+')
+
+        when:
+        intersetReportRenderer.render(projectData)
+
+        then:
+        outputCsv.exists()
+        outputCsv.text == """moduleLicense,group,module,version,licenseUrl,
+Apache 2.0+Apache License Version 2.0,dummy-group,mod1,0.0.1,https://www.apache.org/licenses/LICENSE-2.0,
+Apache 2.0+Apache License Version 2.0+MIT License,dummy-group,mod2,0.0.1,https://www.apache.org/licenses/LICENSE-2.0+https://opensource.org/licenses/MIT,
+"""
+    }
+
 
 }

@@ -30,12 +30,16 @@ class IntersetReportRenderer implements ReportRenderer {
 
     String filename
     boolean includeHeaderLine = true
+    boolean oneLinePerLicense = false;
+    String multiLicenseSeparator = ";"
 
     String separator = ','
     String nl = '\n'
 
-    IntersetReportRenderer(String filename = 'licenses.csv') {
+    IntersetReportRenderer(String filename = 'licenses.csv', boolean oneLinePerLicense = true, String multiLicenseSeparator = ",") {
         this.filename = filename
+        this.oneLinePerLicense = oneLinePerLicense
+        this.multiLicenseSeparator == multiLicenseSeparator
     }
 
     @Input
@@ -60,22 +64,41 @@ class IntersetReportRenderer implements ReportRenderer {
 
         LicenseDataCollector.MultiLicenseInfo multiLicenseInfo = LicenseDataCollector.multiModuleLicenseInfo(data)
 
-        //def moduleUrl = lastOrNull(multiLicenseInfo.moduleUrls)
-        multiLicenseInfo.licenses.forEach( {
-            def moduleLicense = it.name
-            def moduleLicenseUrl = it.url == null ? '' : it.url
+        if (oneLinePerLicense) {
+            multiLicenseInfo.licenses.forEach({
+                def moduleLicense = it.name
+                def moduleLicenseUrl = it.url == null ? '' : it.url
 
-            if (moduleLicense != null) {
-                moduleLicense = moduleLicense.replace(',', " ")
-                moduleLicense = moduleLicense.replace('  ', " ")
-                moduleLicense = moduleLicense.replace(' + ', "+")
-            } else {
-                moduleLicense = ''
-            }
+                if (moduleLicense != null) {
+                    moduleLicense = moduleLicense.replace(',', " ")
+                    moduleLicense = moduleLicense.replace('  ', " ")
+                    moduleLicense = moduleLicense.replace(' + ', "+")
+                } else {
+                    moduleLicense = ''
+                }
+
+                output << "${moduleLicense}${separator}${data.group}${separator}${data.name}${separator}${data.version}${separator}${moduleLicenseUrl}${separator}$nl"
+            })
+
+        } else {
+            def moduleLicense = ''
+            def moduleLicenseUrl = ''
+            multiLicenseInfo.licenses.forEach({
+                moduleLicense += (moduleLicense.size() > 0 ? multiLicenseSeparator : "")
+                def licenseName = it.name;
+                licenseName = licenseName.replace(',', " ")
+                licenseName = licenseName.replace('  ', " ")
+                licenseName = licenseName.replace(' + ', "+")
+                moduleLicense += licenseName
+
+                moduleLicenseUrl += (moduleLicenseUrl.size() > 0 ? multiLicenseSeparator : "")
+                moduleLicenseUrl += it.url == null ? '' : it.url
+            })
 
             output << "${moduleLicense}${separator}${data.group}${separator}${data.name}${separator}${data.version}${separator}${moduleLicenseUrl}${separator}$nl"
+        }
 
-        })
+
     }
 }
 
