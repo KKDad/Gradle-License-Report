@@ -85,7 +85,7 @@ class IntersetReportRenderer implements ReportRenderer {
             def moduleLicenseUrl = ''
             multiLicenseInfo.licenses.forEach({
                 moduleLicense += (moduleLicense.size() > 0 ? multiLicenseSeparator : "")
-                def licenseName = it.name;
+                def licenseName = it.name == null ? '' : it.name
                 licenseName = licenseName.replace(',', " ")
                 licenseName = licenseName.replace('  ', " ")
                 licenseName = licenseName.replace(' + ', "+")
