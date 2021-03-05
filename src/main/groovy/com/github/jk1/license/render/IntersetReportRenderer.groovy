@@ -92,7 +92,11 @@ class IntersetReportRenderer implements ReportRenderer {
                 moduleLicense += licenseName
 
                 moduleLicenseUrl += (moduleLicenseUrl.size() > 0 ? multiLicenseSeparator : "")
-                moduleLicenseUrl += it.url == null ? '' : it.url
+                def licenseUrl = it.url == null ? '' : it.url
+                licenseUrl = licenseUrl.replace(',', " ")
+                licenseUrl = licenseUrl.replace('  ', " ")
+                licenseUrl = licenseUrl.replace(' + ', "+")
+                moduleLicenseUrl += licenseUrl
             })
 
             output << "${moduleLicense}${separator}${data.group}${separator}${data.name}${separator}${data.version}${separator}${moduleLicenseUrl}${separator}$nl"

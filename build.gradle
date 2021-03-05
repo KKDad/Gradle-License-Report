@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.github.kkdad"
-version = "1.16.5"
+version = "1.16.6"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
